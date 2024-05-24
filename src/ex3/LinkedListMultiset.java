@@ -1,7 +1,6 @@
 package ex3;
 
 import java.util.LinkedList;
-import java.util.Objects;
 
 public class LinkedListMultiset<T> {
     private LinkedList<T> elements;
@@ -15,11 +14,15 @@ public class LinkedListMultiset<T> {
     }
 
     public boolean equals(LinkedListMultiset<T> m) {
-        return elements.containsAll(m.elements) && m.elements.containsAll(this.elements);
+        return elements.containsAll(m.getElements()) && m.getElements().containsAll(this.getElements());
         // garante que ambos os multiconjuntos têm os mesmos elementos, independentemente da ordem
     }
 
     public void addAll(LinkedListMultiset<T> m) {
         elements.addAll(m.elements);
+    }
+
+    public LinkedList<T> getElements() {
+      return elements;
     }
 }

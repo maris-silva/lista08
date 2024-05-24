@@ -1,7 +1,6 @@
 package ex3;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class SetMultiset<T> {
@@ -16,10 +15,14 @@ public class SetMultiset<T> {
     }
 
     public boolean equals(SetMultiset<T> m) {
-        return elements.equals(m.elements);
+        return elements.equals(m.getElements());
     }
 
     public void addAll(SetMultiset<T> m) {
-        elements.addAll(m.elements);
+        elements.addAll(m.getElements());
+    }
+
+    public Set<T> getElements() {
+      return elements;
     }
 }

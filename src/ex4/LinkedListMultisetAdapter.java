@@ -4,22 +4,26 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import ex3.ArrayListMultiset;
+import ex3.LinkedListMultiset;
 
-public class ArrayListMultisetAdapter<T> implements MultisetAdapter<T> {
-    private ArrayListMultiset<T> multiset;
+public class LinkedListMultisetAdapter<T> implements MultisetAdapter<T> {
+    private LinkedListMultiset<T> multiset;
     private Set<T> elements;
-    
-    public ArrayListMultisetAdapter(ArrayListMultiset<T> multiset) {
+
+    public LinkedListMultisetAdapter(LinkedListMultiset<T> multiset) {
         this.multiset = multiset;
     }
 
     @Override
     public Iterator<T> iterator() { // uso do iterador
-        elements = new HashSet<>(multiset.getElements());
-        return elements.iterator();
+        Set<T> uniqueElements = new HashSet<>(multiset.getElements());
+        return uniqueElements.iterator();
     }
 
+    public LinkedListMultiset<T> getMultiset() {
+      // permite acesso aos métodos antigos (add, remove e addAll) dos multisets
+      return multiset;
+    }
 
     @Override
     public boolean equals(MultisetAdapter<T> m) {
@@ -28,12 +32,8 @@ public class ArrayListMultisetAdapter<T> implements MultisetAdapter<T> {
       return elements.containsAll(m.getElements()) && m.getElements().containsAll(this.getElements());
     }
 
+    @Override
     public Set<T> getElements() {
       return elements;
-    }
-
-    public ArrayListMultiset<T> getMultiset() { 
-      // permite acesso aos métodos antigos (add, remove e addAll) dos multisets
-      return multiset;
     }
 }
