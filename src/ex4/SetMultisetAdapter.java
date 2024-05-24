@@ -29,7 +29,7 @@ public class SetMultisetAdapter<T> implements MultisetAdapter<T> {
     public boolean equals(MultisetAdapter<T> m) {
       // comparação que não leva em conta elementos repetidos
       elements = new HashSet<>(multiset.getElements());
-      return elements.containsAll(m.getElements()) && m.getElements().containsAll(this.getElements());
+      return elements.equals(m.getElements());
     }
 
     @Override
